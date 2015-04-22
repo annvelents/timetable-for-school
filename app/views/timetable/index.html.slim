@@ -1,0 +1,11 @@
+- @groups.each do |group|
+  h2
+    .class-dependencies
+      = group.name
+      - subjects_at_week = group.hours_at_weeks
+      - subjects_at_week.each do |dependency|
+        li
+          h3
+            = dependency.subject.name
+            = dependency.count_of_hours
+        / # - group.subject

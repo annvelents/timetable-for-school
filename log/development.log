@@ -1,0 +1,955 @@
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-19 13:21:41 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/anna/.rvm/rubies/ruby-2.1.5/lib/ruby/gems/2.1.0/gems/railties-4.2.0/lib/rails/templates/rails/welcome/index.html.erb (14.3ms)
+Completed 200 OK in 116ms (Views: 78.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (297.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (49.3ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (10.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateGroups (20150419135306)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (145.2ms)[0m  [1mCREATE TABLE "groups" ("id" serial primary key, "name" character varying, "count_of_members" integer, "teacher" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (1.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150419135306"]]
+  [1m[36m (9.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (17.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (8.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'groups'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "groups" ("name", "count_of_members", "teacher", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "asd"], ["count_of_members", 19], ["teacher", "sdf"], ["created_at", "2015-04-19 14:41:59.419408"], ["updated_at", "2015-04-19 14:41:59.419408"]]
+  [1m[36m (16.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mGroup Load (1.4ms)[0m  SELECT  "groups".* FROM "groups"  ORDER BY "groups"."id" ASC LIMIT 1
+  [1m[36mGroup Load (0.9ms)[0m  [1mSELECT  "groups".* FROM "groups"  ORDER BY "groups"."id" ASC LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateTeachers (20150419161441)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.8ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateTeachers (20150419161441)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (236.4ms)[0m  [1mCREATE TABLE "teachers" ("id" serial primary key, "name" character varying, "working_hours" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (22.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150419161441"]]
+  [1m[36m (57.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSubjects (20150419171927)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (66.6ms)[0m  [1mCREATE TABLE "subjects" ("id" serial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150419171927"]]
+  [1m[36m (17.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (5.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'groups'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'subjects'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (4.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'teachers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateHoursAtWeeks (20150419173431)
+  [1m[35m (0.9ms)[0m  BEGIN
+  [1m[36m (71.0ms)[0m  [1mCREATE TABLE "hours_at_weeks" ("id" serial primary key, "count_of_hours" integer, "group_id" integer, "subject_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (35.9ms)[0m  CREATE  INDEX  "index_hours_at_weeks_on_group_id" ON "hours_at_weeks"  ("group_id")
+  [1m[36m (38.7ms)[0m  [1mCREATE  INDEX  "index_hours_at_weeks_on_subject_id" ON "hours_at_weeks"  ("subject_id")[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150419173431"]]
+  [1m[36m (24.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.8ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (7.5ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'groups'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (7.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'hours_at_weeks'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (9.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'subjects'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (7.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'teachers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-19 23:04:56 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (3.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/railties-4.2.0/lib/rails/templates/rails/welcome/index.html.erb (5.3ms)
+Completed 200 OK in 110ms (Views: 65.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2015-04-19 23:05:05 +0300
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[35m (14.0ms)[0m  SELECT COUNT(*) FROM "groups"
+  [1m[36mGroup Load (71.0ms)[0m  [1mSELECT  "groups".* FROM "groups"  ORDER BY groups.updated_at desc LIMIT 1[0m
+  [1m[35m (9.7ms)[0m  SELECT COUNT(*) FROM "hours_at_weeks"
+  [1m[36mHoursAtWeek Load (0.8ms)[0m  [1mSELECT  "hours_at_weeks".* FROM "hours_at_weeks"  ORDER BY hours_at_weeks.updated_at desc LIMIT 1[0m
+  [1m[35m (9.9ms)[0m  SELECT COUNT(*) FROM "subjects"
+  [1m[36mSubject Load (0.8ms)[0m  [1mSELECT  "subjects".* FROM "subjects"  ORDER BY subjects.updated_at desc LIMIT 1[0m
+  [1m[35m (13.7ms)[0m  SELECT COUNT(*) FROM "teachers"
+  [1m[36mTeacher Load (0.8ms)[0m  [1mSELECT  "teachers".* FROM "teachers"  ORDER BY teachers.updated_at desc LIMIT 1[0m
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (66.6ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/layouts/rails_admin/_secondary_navigation.html.haml (26.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/layouts/rails_admin/_navigation.html.haml (37.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/layouts/rails_admin/pjax.html.haml (17.7ms)
+Completed 200 OK in 30746ms (Views: 29937.8ms | ActiveRecord: 131.6ms)
+
+
+Started GET "/assets/rails_admin/rails_admin.self-00e68c52f65c42746228c382905f5d5f01c0cf828605369b75f1c38f218f02df.css?body=1" for 127.0.0.1 at 2015-04-19 23:05:36 +0300
+
+
+Started GET "/assets/rails_admin/jquery.remotipart.fixed.self-357a8f834a6b278f578acd51708542bff0852a75d8d583d0d761d3f387af5b4c.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:36 +0300
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:36 +0300
+
+
+Started GET "/assets/jquery.iframe-transport.self-9d6de1e3d97369f20a85456477db38a3d2b674761f4a252275201ec0272793a4.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:36 +0300
+
+
+Started GET "/assets/jquery-ui/effect.self-ed20f2e37a1e647de0ef3e9bbe65a99380e2dd936d39d3d06145de97edae30ac.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:36 +0300
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:36 +0300
+
+
+Started GET "/assets/jquery-ui/core.self-64b590c2d0d95f30c6c4dd0af09f0cde19509c8eff801516c80c98e01ae1b823.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:36 +0300
+
+
+Started GET "/assets/jquery-ui/widget.self-19ca8b140af7fc380cccad5abadcf070daf4952f1402cb83b6199c37549b6d13.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/jquery-ui/mouse.self-430fd8d1d675b348c742731d5d4f6c91ce8eec3ce751c6783f889f33e9689412.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/jquery-ui/sortable.self-5b4e6e548c4b5d16d0d7b26c507d3e5abe0fbb814faedf11f73d4a597e7056e7.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/jquery-ui/position.self-a22a5a606ac183da99ec7ad8c8aaed4dddeb7d148975c7cd3f65ddffe89f5d8e.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/jquery-ui/menu.self-998833580e11979f6c2226a8910170c8f7d1ef49adc25c33adc7d31cd186220c.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/jquery-ui/autocomplete.self-018c0a14cca97e1c030c519e8a65c4b819080cbd7f0a4810e3bab08698b25bec.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/jquery-ui/datepicker.self-3f6ef631c1f97b6d552af89b679344cfd849377d115abb96ddba1209ae921c86.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/jquery.ui.timepicker.self-aebfa594606a37fdeb4b8790e07e648cdc239e1b6e8883043154f5ff9803381b.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/ra.datetimepicker.self-a94e63b921cb381cccc0f06ce11de6b3815fd50dcf7335381b4abb595fbf9a39.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/jquery.colorpicker.self-65a540a6a8e61569a39a37bd1456543ae5e5bbe48868247372bed40a1dff2bcf.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/ra.filter-box.self-20ebcd31d2587a788d8d16ca73520dbac16542505dd982fe506a8ca0555e88ca.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/ra.filtering-multiselect.self-3c2d93a245d26fe55b1ec9458902532822b4735ba62254b4f7f8a5048c57e11a.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/ra.filtering-select.self-0c939a7d737f61d783b040c21858b568052fcb0da9c233a8ac0baf7e512e47c9.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/ra.remote-form.self-371a44b60c5d6bef4e2f47fccdaa1a12463e38a78dee28b2f07ac4e09f7ee6f3.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/jquery.pjax.self-aa02343d5b755c77fd76db8b2d2864cf2aebdba056b56e74b3b91f2e65207444.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/jquery_nested_form.self-d38045d10ebdd28aac44152cb451796232091957b86b47bedad1ab171a3a12cd.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/ra.nested-form-hooks.self-abecd3cd4d55ce44cbf00b87d2f612d570af5e7fe5701d05135d60f8c07e7d37.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/ra.i18n.self-b6d6b5dd78f3feb40904ef7bff9c016b783ea6d96d0e33887d4028714c783eeb.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap-affix.self-d2b642d8fbfc1d7041e2edefd66683ada567a980789dcd6f94fddda0b33408b5.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap-transition.self-09ff30b1e8a93d1f7728b9855f55d9c9d8d5734c8861e0d8139994e50944572a.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap-alert.self-a29e91e8cd3ddaba9bbc466901d53ec2127e9256b9b941905d525a3a716bd1a5.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap-button.self-a6cb16785434acb365ae426aef9f1fce05ed553cae7a965e4471c3da71509175.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap-carousel.self-57eb8422043cf0a85b7a9dc6843916eb0a3e35b419c7798a5eb254b918997631.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap-collapse.self-7dc8bfbc2fbfabd2bad62c58ff8ffeaf8f20fb87c7ca6cd35f06d4dc19632587.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap-dropdown.self-9314126777c6be5443e37ea7f7967d7914d72b3e60449ba50edc967446373059.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap-modal.self-72f95ffa1071297725a9ac91989693d56d1abf23f441a47455073b0da2857a5b.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap-scrollspy.self-a155b9d4b2f978905f0326c0f6635e1134fe91c6bfbfcbad079fa24a9fef2b0e.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap-tab.self-122235057fbd4c6c7da377d59dc58f47b44cb1088a2e38e6ee6ce9d8ac29a26a.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap-tooltip.self-11cf547be953f25f511cec668f6690473fd97b2f65502e4032f4030999a3f0c3.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap-popover.self-77d8e3a2499c1104ef146396a68b82469ee2bdb365199b874694698d10405e9a.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap-typeahead.self-2621ced336904d375bef144d46edd9d304889e09c6559d64df325bbd10f4ce8a.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/bootstrap/bootstrap.self-94f59a48294d99f8d9b7632cd5a1742670c7735fe37ec7c555aab939b635fdde.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/ra.widgets.self-ea332f12901bb0ed9918b3c1a71512ccf55172d4dcc3f3eda94b7acffb709d93.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/ui.self-6fc2a81a6257015d1b07786613b4138b096dad26fcf4f971b70d2e48adcfa9a8.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/custom/ui.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/rails_admin/rails_admin.self-76f0a23ad5f8028895d20de39faa555dd2d46a6f5d1d6b03b546f9d0156372c5.js?body=1" for 127.0.0.1 at 2015-04-19 23:05:37 +0300
+
+
+Started GET "/assets/fontawesome-webfont-aadc3580d2b64ff5a7e6f1425587db4e8b033efcbf8f5c332ca52a5ed580c87c.woff2?v=4.3.0" for 127.0.0.1 at 2015-04-19 23:05:38 +0300
+
+
+Started GET "/admin/group?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2015-04-19 23:05:50 +0300
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"group"}
+  [1m[35mGroup Load (1.6ms)[0m  SELECT  "groups".* FROM "groups"  ORDER BY groups.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM "groups"[0m
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (169.2ms)
+Completed 200 OK in 203ms (Views: 186.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/admin/group/1/edit?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2015-04-19 23:05:56 +0300
+Processing by RailsAdmin::MainController#edit as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"group", "id"=>"1"}
+  [1m[35mGroup Load (0.6ms)[0m  SELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1  ORDER BY "groups"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_field.html.haml (16.3ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_field.html.haml (2.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_field.html.haml (0.6ms)
+  [1m[36mHoursAtWeek Load (0.5ms)[0m  [1mSELECT "hours_at_weeks".* FROM "hours_at_weeks" WHERE "hours_at_weeks"."group_id" = $1[0m  [["group_id", 1]]
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM "hours_at_weeks"
+  [1m[36mHoursAtWeek Load (0.7ms)[0m  [1mSELECT "hours_at_weeks".* FROM "hours_at_weeks"  ORDER BY hours_at_weeks.id desc[0m
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_filtering_multiselect.html.haml (65.4ms)
+  [1m[35mSubject Load (0.9ms)[0m  SELECT "subjects".* FROM "subjects" INNER JOIN "hours_at_weeks" ON "subjects"."id" = "hours_at_weeks"."subject_id" WHERE "hours_at_weeks"."group_id" = $1  [["group_id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "subjects"[0m
+  [1m[35mSubject Load (0.5ms)[0m  SELECT "subjects".* FROM "subjects"  ORDER BY subjects.id desc
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_filtering_multiselect.html.haml (57.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_submit_buttons.html.haml (12.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/edit.html.haml within layouts/rails_admin/pjax (243.3ms)
+Completed 200 OK in 325ms (Views: 271.3ms | ActiveRecord: 8.0ms)
+
+
+Started GET "/assets/rails_admin/multiselect/icon_sprite-34a30806fcba43a2effc9739cb7a370a865199a7d38bfcbc7c2474ef3ff70ded.png" for 127.0.0.1 at 2015-04-19 23:05:57 +0300
+
+
+Started GET "/admin/subject?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2015-04-19 23:06:07 +0300
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"subject"}
+  [1m[36mSubject Load (1.0ms)[0m  [1mSELECT  "subjects".* FROM "subjects"  ORDER BY subjects.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "subjects"
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (26.9ms)
+Completed 200 OK in 58ms (Views: 43.8ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/admin/subject/new?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2015-04-19 23:06:10 +0300
+Processing by RailsAdmin::MainController#new as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"subject"}
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_field.html.haml (0.9ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "hours_at_weeks"[0m
+  [1m[35mHoursAtWeek Load (0.6ms)[0m  SELECT "hours_at_weeks".* FROM "hours_at_weeks"  ORDER BY hours_at_weeks.id desc
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_filtering_multiselect.html.haml (14.0ms)
+  [1m[36m (1.7ms)[0m  [1mSELECT COUNT(*) FROM "groups"[0m
+  [1m[35mGroup Load (0.8ms)[0m  SELECT "groups".* FROM "groups"  ORDER BY groups.id desc
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_filtering_multiselect.html.haml (22.1ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_submit_buttons.html.haml (5.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/new.html.haml within layouts/rails_admin/pjax (73.0ms)
+Completed 200 OK in 106ms (Views: 91.6ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/admin/group/1/edit" for 127.0.0.1 at 2015-04-19 23:06:30 +0300
+Processing by RailsAdmin::MainController#edit as JS
+  Parameters: {"model_name"=>"group", "id"=>"1"}
+  [1m[36mGroup Load (0.9ms)[0m  [1mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1  ORDER BY "groups"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_field.html.haml (4.8ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_field.html.haml (1.5ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_field.html.haml (1.6ms)
+  [1m[35mHoursAtWeek Load (0.6ms)[0m  SELECT "hours_at_weeks".* FROM "hours_at_weeks" WHERE "hours_at_weeks"."group_id" = $1  [["group_id", 1]]
+  [1m[36mHoursAtWeek Load (0.8ms)[0m  [1mSELECT "hours_at_weeks".* FROM "hours_at_weeks"  ORDER BY hours_at_weeks.id desc[0m
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_filtering_multiselect.html.haml (38.0ms)
+  [1m[35mSubject Load (1.0ms)[0m  SELECT "subjects".* FROM "subjects" INNER JOIN "hours_at_weeks" ON "subjects"."id" = "hours_at_weeks"."subject_id" WHERE "hours_at_weeks"."group_id" = $1  [["group_id", 1]]
+  [1m[36mSubject Load (0.7ms)[0m  [1mSELECT "subjects".* FROM "subjects"  ORDER BY subjects.id desc[0m
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_filtering_multiselect.html.haml (23.1ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_submit_buttons.html.haml (18.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/edit.html.haml (140.4ms)
+Completed 200 OK in 160ms (Views: 141.7ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/admin/subject/new" for 127.0.0.1 at 2015-04-19 23:06:38 +0300
+Processing by RailsAdmin::MainController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"fclNWfjylc89GLiZgTF4KLbriB1odlo5HJNiBLJHrQjJSokfDR9/TJu3/RFhK1va2DuBCyhsqgcYTyVJyNCUWQ==", "subject"=>{"name"=>"Математика", "hours_at_week_ids"=>["", ""], "group_ids"=>["", "", "1"]}, "return_to"=>"http://localhost:3000/admin/subject", "_save"=>"", "model_name"=>"subject"}
+  [1m[35mGroup Load (0.6ms)[0m  SELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (22.0ms)[0m  INSERT INTO "subjects" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Математика"], ["created_at", "2015-04-19 20:06:38.763962"], ["updated_at", "2015-04-19 20:06:38.763962"]]
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "hours_at_weeks" ("group_id", "subject_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["group_id", 1], ["subject_id", 1], ["created_at", "2015-04-19 20:06:38.791863"], ["updated_at", "2015-04-19 20:06:38.791863"]]
+  [1m[35m (27.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/admin/subject
+Completed 302 Found in 234ms (ActiveRecord: 51.4ms)
+
+
+Started GET "/admin/subject" for 127.0.0.1 at 2015-04-19 23:06:38 +0300
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"model_name"=>"subject"}
+  [1m[36mSubject Load (1.0ms)[0m  [1mSELECT  "subjects".* FROM "subjects"  ORDER BY subjects.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "subjects"
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/application (59.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/layouts/rails_admin/_secondary_navigation.html.haml (11.6ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/layouts/rails_admin/_navigation.html.haml (15.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/layouts/rails_admin/pjax.html.haml (14.4ms)
+Completed 200 OK in 852ms (Views: 840.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/admin/subject/1/edit?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2015-04-19 23:06:47 +0300
+Processing by RailsAdmin::MainController#edit as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"subject", "id"=>"1"}
+  [1m[36mSubject Load (0.7ms)[0m  [1mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1  ORDER BY "subjects"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_field.html.haml (0.9ms)
+  [1m[35mHoursAtWeek Load (0.6ms)[0m  SELECT "hours_at_weeks".* FROM "hours_at_weeks" WHERE "hours_at_weeks"."subject_id" = $1  [["subject_id", 1]]
+  [1m[36mHoursAtWeek Load (0.6ms)[0m  [1mSELECT "hours_at_weeks".* FROM "hours_at_weeks"  ORDER BY hours_at_weeks.id desc[0m
+  [1m[35mGroup Load (0.6ms)[0m  SELECT "groups".* FROM "groups" WHERE "groups"."id" IN (1)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_filtering_multiselect.html.haml (42.9ms)
+  [1m[36mGroup Load (0.7ms)[0m  [1mSELECT "groups".* FROM "groups" INNER JOIN "hours_at_weeks" ON "groups"."id" = "hours_at_weeks"."group_id" WHERE "hours_at_weeks"."subject_id" = $1[0m  [["subject_id", 1]]
+  [1m[35mGroup Load (0.8ms)[0m  SELECT "groups".* FROM "groups"  ORDER BY groups.id desc
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_filtering_multiselect.html.haml (24.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_submit_buttons.html.haml (7.4ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/edit.html.haml within layouts/rails_admin/pjax (100.1ms)
+Completed 200 OK in 152ms (Views: 133.5ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/admin/hours_at_week/1/edit" for 127.0.0.1 at 2015-04-19 23:06:53 +0300
+Processing by RailsAdmin::MainController#edit as JS
+  Parameters: {"model_name"=>"hours_at_week", "id"=>"1"}
+  [1m[36mHoursAtWeek Load (0.6ms)[0m  [1mSELECT  "hours_at_weeks".* FROM "hours_at_weeks" WHERE "hours_at_weeks"."id" = $1  ORDER BY "hours_at_weeks"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_field.html.haml (1.0ms)
+  [1m[35mGroup Load (0.6ms)[0m  SELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM "groups"[0m
+  [1m[35mGroup Load (0.7ms)[0m  SELECT "groups".* FROM "groups"  ORDER BY groups.id desc
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_filtering_select.html.haml (32.7ms)
+  [1m[36mSubject Load (0.5ms)[0m  [1mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "subjects"
+  [1m[36mSubject Load (0.6ms)[0m  [1mSELECT "subjects".* FROM "subjects"  ORDER BY subjects.id desc[0m
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_form_filtering_select.html.haml (18.7ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/_submit_buttons.html.haml (7.4ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views/rails_admin/main/edit.html.haml (95.1ms)
+Completed 200 OK in 115ms (Views: 95.6ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/assets/rails_admin/aristo/images/ui-icons_454545_256x240-5d0cf948d7765488899a06be518f8885ef572725e6d8a9733eab7e6b746fce11.png" for 127.0.0.1 at 2015-04-19 23:06:53 +0300
+
+
+Started PUT "/admin/hours_at_week/1/edit" for 127.0.0.1 at 2015-04-19 23:07:00 +0300
+Processing by RailsAdmin::MainController#edit as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zu2ZZG+IyDJ9SZ7wEKUZCZeEcUtVbItl6RNTePpHxQp6bl0immUisdvm23jwvzr7+VR4XRV2e1vtzxQ1gND8Ww==", "hours_at_week"=>{"count_of_hours"=>"3", "group_id"=>"1", "subject_id"=>"1"}, "return_to"=>"http://localhost:3000/admin/subject/1/edit", "model_name"=>"hours_at_week", "id"=>"1"}
+  [1m[35mHoursAtWeek Load (0.7ms)[0m  SELECT  "hours_at_weeks".* FROM "hours_at_weeks" WHERE "hours_at_weeks"."id" = $1  ORDER BY "hours_at_weeks"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE "hours_at_weeks" SET "count_of_hours" = $1, "updated_at" = $2 WHERE "hours_at_weeks"."id" = $3  [["count_of_hours", 3], ["updated_at", "2015-04-19 20:07:00.646826"], ["id", 1]]
+  [1m[36m (8.6ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 38ms (Views: 0.5ms | ActiveRecord: 10.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-21 18:21:11 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/railties-4.2.0/lib/rails/templates/rails/welcome/index.html.erb (0.1ms)
+Completed 200 OK in 214ms (Views: 109.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/timetable" for 127.0.0.1 at 2015-04-21 18:21:20 +0300
+Processing by TimetableController#index as HTML
+Completed 500 Internal Server Error in 598ms
+
+ActionView::MissingTemplate (Missing template timetable/index, application/index with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder, :haml]}. Searched in:
+  * "/home/anna/dyploma/app/views"
+  * "/home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views"
+  * "/home/anna/.rvm/gems/ruby-2.2.1/gems/kaminari-0.16.3/app/views"
+):
+  actionview (4.2.0) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.0) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.0) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.0) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.0) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.0) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.0) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.0) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.0) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.0) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.0) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.0) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.0) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.0) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.2.0) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /home/anna/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.0) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.2.0) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  remotipart (1.2.1) lib/remotipart/render_overrides.rb:14:in `render_with_remotipart'
+  actionpack (4.2.0) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.0) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.0) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.0) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:92:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_process_action_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.2.0) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.0) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.0) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.0) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.0) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.0) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.0) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.2.0) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.0) lib/action_controller/metal.rb:236:in `block in action'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:42:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:802:in `call'
+  rack-pjax (0.8.0) lib/rack/pjax.rb:12:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  remotipart (1.2.1) lib/remotipart/middleware.rb:27:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.0) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:647:in `call'
+  activerecord (4.2.0) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_call_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /home/anna/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/anna/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/anna/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (43.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (12.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (16.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (171.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (1.6ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.6ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.6ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.7ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (102.5ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (1.5ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (3.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (228.3ms)
+
+
+Started GET "/timetable" for 127.0.0.1 at 2015-04-21 19:18:36 +0300
+Processing by TimetableController#index as HTML
+Completed 500 Internal Server Error in 160ms
+
+NoMethodError (undefined method `pry' for #<Binding:0x007fb378a02b60>):
+  app/controllers/timetable_controller.rb:3:in `index'
+
+
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (83.3ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (96.6ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (37.7ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (352.4ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (14.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (16.1ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (16.5ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (172.7ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.4ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (387.2ms)
+
+
+Started GET "/timetable" for 127.0.0.1 at 2015-04-21 19:20:34 +0300
+Processing by TimetableController#index as HTML
+Completed 500 Internal Server Error in 61ms
+
+NoMethodError (undefined method `pry' for #<Binding:0x007fb377112790>):
+  app/controllers/timetable_controller.rb:3:in `index'
+
+
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (73.3ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (24.8ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (15.8ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (160.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (1.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (7.5ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (3.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (27.4ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (111.4ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (12.6ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (8.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (210.4ms)
+
+
+Started GET "/timetable" for 127.0.0.1 at 2015-04-21 19:24:37 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (33.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TimetableController#index as HTML
+Completed 500 Internal Server Error in 8351ms
+
+ActionView::MissingTemplate (Missing template timetable/index, application/index with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder, :haml]}. Searched in:
+  * "/home/anna/dyploma/app/views"
+  * "/home/anna/.rvm/gems/ruby-2.2.1/gems/rails_admin-0.6.7/app/views"
+  * "/home/anna/.rvm/gems/ruby-2.2.1/gems/kaminari-0.16.3/app/views"
+):
+  actionview (4.2.0) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.0) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.0) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.0) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.0) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.0) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.0) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.0) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.0) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.0) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.0) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.0) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.0) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.0) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.2.0) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /home/anna/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.0) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.2.0) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  remotipart (1.2.1) lib/remotipart/render_overrides.rb:14:in `render_with_remotipart'
+  actionpack (4.2.0) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.0) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.0) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.0) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:92:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_process_action_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.2.0) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.0) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.0) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.0) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.0) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.0) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.0) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.2.0) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.0) lib/action_controller/metal.rb:236:in `block in action'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:42:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:802:in `call'
+  rack-pjax (0.8.0) lib/rack/pjax.rb:12:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  remotipart (1.2.1) lib/remotipart/middleware.rb:27:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.0) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:647:in `call'
+  activerecord (4.2.0) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_call_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /home/anna/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/anna/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/anna/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (20.3ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (9.1ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (85.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (1.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.8ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (48.3ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.5ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (115.8ms)
+
+
+Started GET "/timetable" for 127.0.0.1 at 2015-04-21 19:31:20 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TimetableController#index as HTML
+  [1m[35mGroup Load (24.7ms)[0m  SELECT "groups".* FROM "groups"
+  [1m[36mHoursAtWeek Load (63.9ms)[0m  [1mSELECT "hours_at_weeks".* FROM "hours_at_weeks" WHERE "hours_at_weeks"."group_id" = $1[0m  [["group_id", 1]]
+  Rendered timetable/index.html.slim within layouts/application (1103647.2ms)
+Completed 200 OK in 1110840ms (Views: 1106906.1ms | ActiveRecord: 195.0ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-04-21 19:49:52 +0300
+
+
+Started GET "/assets/timetable.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-04-21 19:49:52 +0300
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-04-21 19:49:52 +0300
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-04-21 19:49:52 +0300
+
+
+Started GET "/assets/timetable.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-04-21 19:49:52 +0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-04-21 19:49:52 +0300
+
+
+Started GET "/assets/application.self-3a3c8b61bda630ee689740ce7cbd0dd8ea6fdd45e2c42eef4661ab38cf268afe.js?body=1" for 127.0.0.1 at 2015-04-21 19:49:52 +0300
+
+
+Started GET "/timetable" for 127.0.0.1 at 2015-04-21 19:50:37 +0300
+Processing by TimetableController#index as HTML
+  [1m[35mGroup Load (0.6ms)[0m  SELECT "groups".* FROM "groups"
+  [1m[36mHoursAtWeek Load (0.6ms)[0m  [1mSELECT "hours_at_weeks".* FROM "hours_at_weeks" WHERE "hours_at_weeks"."group_id" = $1[0m  [["group_id", 1]]
+  Rendered timetable/index.html.slim within layouts/application (25.7ms)
+Completed 500 Internal Server Error in 2515ms
+
+ActionView::Template::Error (undefined method `name' for #<HoursAtWeek:0x007fe431da6d90>):
+     5:       - subjects_at_week = group.hours_at_weeks
+     6:       - subjects_at_week.each do |subject|
+     7:         li
+     8:           = subject.name
+     9:           = subject.teacher
+    10:       / # - group.subject
+  app/views/timetable/index.html.slim:8:in `block (2 levels) in _app_views_timetable_index_html_slim___1197788303242765960_70309034465380'
+  app/views/timetable/index.html.slim:6:in `block in _app_views_timetable_index_html_slim___1197788303242765960_70309034465380'
+  app/views/timetable/index.html.slim:1:in `_app_views_timetable_index_html_slim___1197788303242765960_70309034465380'
+
+
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (27.7ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.8ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.3ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (92.3ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (1.1ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (50.5ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.7ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.1ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (110.8ms)
+
+
+Started GET "/timetable" for 127.0.0.1 at 2015-04-21 19:51:29 +0300
+Processing by TimetableController#index as HTML
+  [1m[35mGroup Load (0.7ms)[0m  SELECT "groups".* FROM "groups"
+  [1m[36mHoursAtWeek Load (0.6ms)[0m  [1mSELECT "hours_at_weeks".* FROM "hours_at_weeks" WHERE "hours_at_weeks"."group_id" = $1[0m  [["group_id", 1]]
+  [1m[35mSubject Load (16.6ms)[0m  SELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered timetable/index.html.slim within layouts/application (94184.3ms)
+Completed 500 Internal Server Error in 96889ms
+
+ActionView::Template::Error (undefined method `name' for #<HoursAtWeek:0x007fe4320d38d8>):
+     6:       - subjects_at_week.each do |dependency|
+     7:         li
+     8:           - binding.pry
+     9:           = dependency.subject.name
+    10:           = dependency.teacher.name
+    11:       / # - group.subject
+  app/views/timetable/index.html.slim:9:in `block (2 levels) in _app_views_timetable_index_html_slim___1197788303242765960_70308989673480'
+  app/views/timetable/index.html.slim:6:in `block in _app_views_timetable_index_html_slim___1197788303242765960_70308989673480'
+  app/views/timetable/index.html.slim:1:in `_app_views_timetable_index_html_slim___1197788303242765960_70308989673480'
+
+
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (20.3ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (72.6ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (7.8ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.8ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (53.6ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.8ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (99.6ms)
+
+
+Started GET "/timetable" for 127.0.0.1 at 2015-04-21 19:53:06 +0300
+Processing by TimetableController#index as HTML
+  [1m[36mGroup Load (0.6ms)[0m  [1mSELECT "groups".* FROM "groups"[0m
+  [1m[35mHoursAtWeek Load (0.6ms)[0m  SELECT "hours_at_weeks".* FROM "hours_at_weeks" WHERE "hours_at_weeks"."group_id" = $1  [["group_id", 1]]
+  [1m[36mSubject Load (0.6ms)[0m  [1mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered timetable/index.html.slim within layouts/application (3031.4ms)
+Completed 500 Internal Server Error in 5266ms
+
+ActionView::Template::Error (undefined method `teacher' for #<HoursAtWeek:0x007fe420139bb8>):
+     7:         li
+     8:           - binding.pry
+     9:           = dependency.subject.name
+    10:           = dependency.teacher.name
+    11:       / # - group.subject
+  app/views/timetable/index.html.slim:10:in `block (2 levels) in _app_views_timetable_index_html_slim___1197788303242765960_70308883540660'
+  app/views/timetable/index.html.slim:6:in `block in _app_views_timetable_index_html_slim___1197788303242765960_70308883540660'
+  app/views/timetable/index.html.slim:1:in `_app_views_timetable_index_html_slim___1197788303242765960_70308883540660'
+
+
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (30.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.1ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.1ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (87.6ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (1.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (64.8ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.2ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (123.7ms)
+
+
+Started GET "/timetable" for 127.0.0.1 at 2015-04-21 19:53:26 +0300
+Processing by TimetableController#index as HTML
+  [1m[35mGroup Load (0.6ms)[0m  SELECT "groups".* FROM "groups"
+  [1m[36mHoursAtWeek Load (0.6ms)[0m  [1mSELECT "hours_at_weeks".* FROM "hours_at_weeks" WHERE "hours_at_weeks"."group_id" = $1[0m  [["group_id", 1]]
+  [1m[35mSubject Load (0.7ms)[0m  SELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered timetable/index.html.slim within layouts/application (35834.6ms)
+Completed 500 Internal Server Error in 40515ms
+
+ActionView::Template::Error (undefined method `teacher' for #<HoursAtWeek:0x007fe4211845e0>):
+     7:         li
+     8:           - binding.pry
+     9:           = dependency.subject.name
+    10:           = dependency.count_of_hours
+    11:       / # - group.subject
+  app/views/timetable/index.html.slim:10:in `block (2 levels) in _app_views_timetable_index_html_slim___1197788303242765960_70308883540660'
+  app/views/timetable/index.html.slim:6:in `block in _app_views_timetable_index_html_slim___1197788303242765960_70308883540660'
+  app/views/timetable/index.html.slim:1:in `_app_views_timetable_index_html_slim___1197788303242765960_70308883540660'
+
+
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (30.6ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (11.4ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.4ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (88.4ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.8ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (56.7ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.9ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.1ms)
+  Rendered /home/anna/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (104.9ms)
+
+
+Started GET "/timetable" for 127.0.0.1 at 2015-04-21 19:54:07 +0300
+Processing by TimetableController#index as HTML
+  [1m[36mGroup Load (0.6ms)[0m  [1mSELECT "groups".* FROM "groups"[0m
+  [1m[35mHoursAtWeek Load (0.5ms)[0m  SELECT "hours_at_weeks".* FROM "hours_at_weeks" WHERE "hours_at_weeks"."group_id" = $1  [["group_id", 1]]
+  [1m[36mSubject Load (0.7ms)[0m  [1mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered timetable/index.html.slim within layouts/application (684.9ms)
+Completed 200 OK in 1562ms (Views: 806.1ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/assets/timetable.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-04-21 19:54:09 +0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-04-21 19:54:09 +0300
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-04-21 19:54:09 +0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-04-21 19:54:09 +0300
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-04-21 19:54:09 +0300
+
+
+Started GET "/assets/timetable.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-04-21 19:54:09 +0300
+
+
+Started GET "/assets/application.self-3a3c8b61bda630ee689740ce7cbd0dd8ea6fdd45e2c42eef4661ab38cf268afe.js?body=1" for 127.0.0.1 at 2015-04-21 19:54:09 +0300
