@@ -1,5 +1,6 @@
 /.bundle
 /log/*.log
+/tmp
 /public/uploads/
 config/*.yml
 /public/uploads/
