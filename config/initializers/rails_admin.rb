@@ -45,7 +45,6 @@ RailsAdmin.config do |config|
     list do
       field :id
       field :count_of_hours
-      field :teacher
       field :group
     end
   end
